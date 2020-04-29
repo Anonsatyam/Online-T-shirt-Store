@@ -12,8 +12,8 @@ const {
 
 router.post("/signup", [
     // ...some other validations...
-    check('firstName').isLength({ min : 5}),
-    check('email').isEmail(),
+    check('firstName').isLength({ min : 5}).withMessage("Name Must be greater than 3"),
+    check('email').isEmail().withMessage('Invalid Email'),
     check('password')
     .isLength({
         min: 5

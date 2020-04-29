@@ -15,7 +15,8 @@ exports.signup = (req, res) => {
 
     const user = new User(req.body);
     user.save((err, user) => {
-        if (err) {
+        if (err || !user) {
+            console.log(err)
             return res.status(400).json({
                 err: "Note able to save user in DB"
             });
@@ -23,7 +24,6 @@ exports.signup = (req, res) => {
         res.json({
             firstName: user.firstName,
             email: user.email,
-            password: user.encry_password,
             id: user._id
         });
     });
